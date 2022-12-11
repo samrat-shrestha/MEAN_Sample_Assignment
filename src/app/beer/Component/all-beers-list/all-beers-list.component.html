@@ -1,0 +1,14 @@
+<div>
+  <div class="card-deck">
+    <div class="card" *ngFor="let beer of beers$ | async">
+      <img placement="right" (mouseenter)="[mouseHover(beer.ingredients), p.open()]" (mouseleave)="p.close()" #p="ngbPopover" ngbPopover="{{hoverText}}" class="img-fluid" src="{{beer.image_url}}" nz-popover nzType="primary" nzPopoverTitle="Title" nzPopoverContent="Content">
+      <div class="card-body">
+        <h5 class="card-title">{{ beer.name }}</h5>
+        <p class="card-text">{{ beer.description }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="d-grid gap-2 col-1 mx-auto">
+    <button class="btn btn-default dropdown-toggle" type="button" (click)="getNextPageBeers()"><span style="font-weight: bold; color: dodgerblue;">Load More</span></button>
+  </div>
+</div>

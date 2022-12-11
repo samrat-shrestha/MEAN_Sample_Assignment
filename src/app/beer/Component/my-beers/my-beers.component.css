@@ -1,0 +1,43 @@
+.center {
+    margin: auto;
+    width: 100%;
+    padding: 10px;
+  }
+
+.form-img {
+    width: 4rem;
+    height: 70px;
+    float: left;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.list-img {
+    width: 3rem;
+    height: 60px;
+    margin-left: 10px;
+}
+
+.card {
+    flex-direction: row;
+    align-items: center;
+    margin: 10px 10px 10px 10px;
+}
+
+.card-title {
+    font-weight: bold;
+}
+
+@media only screen and (max-width: 768px) {
+    a {
+        display: none;
+    }
+
+    .card-body {
+        padding: 0.5em 1.2em;
+    }
+
+    .card-body .card-text {
+        margin: 0;
+    }
+}
