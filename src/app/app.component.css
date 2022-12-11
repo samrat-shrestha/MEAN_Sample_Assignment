@@ -1,0 +1,10 @@
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: black;
+    font-weight: bold;
+    background-color: white;
+}
+
+.nav {
+    --bs-nav-link-color: grey;
+    --bs-nav-link-hover-color: grey;
+}

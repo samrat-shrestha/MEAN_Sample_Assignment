@@ -46,9 +46,6 @@ export class MyBeersComponent {
   }
 
   onSubmit(){
-    console.log(this.beerForm.value.name);
-    console.log(this.beerForm.value.genre);
-    console.log(this.beerForm.value.description);
     let data = {
       name:this.beerForm.value.name,
       genre : this.beerForm.value.genre,
@@ -62,7 +59,7 @@ export class MyBeersComponent {
         this.ngOnInit();
       },
       error: (e) => {
-        console.log(e);
+        // console.log(e);
       },
     });
   }

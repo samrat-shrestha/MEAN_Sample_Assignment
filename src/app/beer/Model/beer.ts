@@ -6,4 +6,5 @@ export interface Beer {
     image_url: string;
     description:string;
     ingredients:any;
+    tagline:string;
   }

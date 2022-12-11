@@ -18,17 +18,15 @@ export class AllBeersListComponent implements OnInit, OnDestroy {
 
   listBeersSub: Subscription;
 
-  deleteBeerSub: Subscription;
-
-  updateBeerSub: Subscription;
-
   beerState: BeerState;
 
   beers$: Observable<Beer[]> = this.beerQuery.selectAll();
 
-  currentPage : number = 1;
+  currentPage: number = 1;
 
-  hoverText : string = "";
+  hoverText: string = "";
+
+  isLoadMoreClicked: boolean = false;
 
   constructor(private beerService: BeerService, private beerQuery: BeerQuery) {
   }
@@ -37,28 +35,26 @@ export class AllBeersListComponent implements OnInit, OnDestroy {
     this.getBeersList();
   }
 
-  getNextPageBeers(){
+  getNextPageBeers() {
     this.currentPage += 1;
 
-    this.getBeersList();
+    this.beerService.getNextBeers(this.currentPage).subscribe(x=>{});
   }
 
-  getBeersList(){
+  getBeersList() {
     this.listBeersSub = this.beerQuery.selectAreBeersLoaded$.pipe(
-      // filter(areBeersLoaded => !areBeersLoaded),
-      switchMap(() => {
-        return this.beerService.getAllBeers(this.currentPage);
-      })
-      // switchMap(areBeersLoaded => {
-      //   if (!areBeersLoaded) {
-      //     return this.beerService.getAllBeers();
-      //   }
+      filter(areBeersLoaded => !areBeersLoaded),
+      // switchMap(() => {
+      //   return this.beerService.getAllBeers(this.currentPage);
       // })
+      switchMap(areBeersLoaded => {
+        return this.beerService.getAllBeers();
+      })
     ).subscribe(result => {
     });
   }
 
-  mouseHover(ingredients : any){
+  mouseHover(ingredients: any) {
     this.hoverText = "ingredients : ";
     for (var key in ingredients) {
       this.hoverText += key + " ";
@@ -69,14 +65,6 @@ export class AllBeersListComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     if (this.listBeersSub) {
       this.listBeersSub.unsubscribe();
-    }
-
-    if (this.deleteBeerSub) {
-      this.deleteBeerSub.unsubscribe();
-    }
-
-    if (this.updateBeerSub) {
-      this.updateBeerSub.unsubscribe();
     }
   }
 }

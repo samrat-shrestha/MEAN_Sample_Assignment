@@ -1,4 +1,4 @@
-import { BeerStore, BeerState } from './../Store/beer.store';
+import { BeerStore, BeerState, createInitialState } from './../Store/beer.store';
 import { EntityStore, EntityState } from '@datorama/akita';
 import { Beer } from './../Model/beer';
 import { Injectable } from '@angular/core';
@@ -19,15 +19,19 @@ export class BeerService {
     this.beerStore = beerStore;
   }
 
-  getAllBeers(page:number): Observable<Beer[]> {
-    return this.http.get<Beer[]>('https://api.punkapi.com/v2/beers?page='+page+'&per_page=10').pipe(
+  getAllBeers(): Observable<Beer[]> {
+    return this.http.get<Beer[]>('https://api.punkapi.com/v2/beers?page='+1+'&per_page=10').pipe(
       tap(Beers => {
         this.beerStore.loadBeers(Beers, true);
       })
     );
   }
 
-  createBeersActive(areBeersLoaded: boolean = false) {
-    this.beerStore.loadBeers([], areBeersLoaded);
+  getNextBeers(page:number): Observable<Beer[]> {
+    return this.http.get<Beer[]>('https://api.punkapi.com/v2/beers?page='+page+'&per_page=10').pipe(
+      tap(result => {
+        this.beerStore.add(result);
+      })
+    );
   }
 }

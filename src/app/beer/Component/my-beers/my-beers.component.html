@@ -1,62 +1,68 @@
-<div class="text-center">
-    <div>
-        <ngb-alert #selfClosingAlert *ngIf="successMessage" type="success" (closed)="successMessage = ''"
-	>{{ successMessage }}
-</ngb-alert>
+<div>
+  <div>
+    <ngb-alert #selfClosingAlert *ngIf="successMessage" type="success" (closed)="successMessage = ''">{{ successMessage }}</ngb-alert>
 
-        <div class="center" *ngIf="Beer.length == 0">
-            <p style="font-style: normal; color: grey;">Nothing to see yet!</p>
-            <a class="link-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Click here</a><span style="font-style: normal; color: grey;"> here to add your first
-                beer.</span>
-        </div>
-
-        <div class="card-deck" *ngIf="!(Beer.length == 0)">
-            <div class="card" *ngFor="let beer of Beer">
-              <img placement="right" class="img-fluid list-img" src="{{beer.imagePath}}">
-              <div class="card-body">
-                <h5 class="card-title">{{ beer.name }}</h5>
-                <p class="card-text">{{ beer.description }}</p>
-              </div>
-            </div>
-          </div>
-
-        <div>
-            <button class='btn btn-primary pull-right'
-                style="position:absolute; top:0; right:0; margin-top: 5px; margin-right: 5px;" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Add A New Beer
-            </button>
-        </div>
-
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Add a New Beer</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form [formGroup]="beerForm">
-                            <div class="mb-3">
-                                <img style="border: 1px  solid lightgrey; margin-bottom: 10px;" placement="right" class="img-fluid form-img" src="../../../../assets/images/houzz.png">
-                              </div>
-                            <div class="mb-3">
-                              <input type="text" formControlName="name" placeholder="Beer Name*" class="form-control" id="beerInputName">
-                            </div>
-                            <div class="mb-3">
-                                <input type="text" formControlName="genre" placeholder="Genre*" class="form-control" id="beerInputGenre">
-                              </div>
-                              <div class="mb-3">
-                                <input type="text" formControlName="description" placeholder="Description*" class="form-control" id="beerInputDescription">
-                              </div>
-                          </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-primary" (click)="onSubmit()" data-bs-dismiss="modal" [disabled]="!beerForm.valid">Save</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="center" *ngIf="Beer.length == 0">
+      <p style="font-style: normal; color: grey;">Nothing to see yet!</p>
+      <a class="link-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Click here</a><span
+        style="font-style: normal; color: grey;"> here to add your first
+        beer.</span>
     </div>
+
+    <div class="card-deck" *ngIf="!(Beer.length == 0)">
+      <div class="card" *ngFor="let beer of Beer">
+        <img placement="right" class="img-fluid list-img" src="{{beer.imagePath}}">
+        <div class="card-body">
+          <h4 class="card-title">{{ beer.name }}</h4>
+          <h6 class="card-title" style="color: darkgoldenrod;">{{ beer.genre }}</h6>
+          <p class="card-text">{{ beer.description }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <button class='btn btn-primary pull-right'
+        style="position:absolute; top:0; right:0; margin-top: 5px; margin-right: 5px;" data-bs-toggle="modal"
+        data-bs-target="#exampleModal">
+        Add A New Beer
+      </button>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Add a New Beer</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form [formGroup]="beerForm">
+              <div class="mb-3">
+                <img style="border: 1px  solid lightgrey; margin-bottom: 10px;" placement="right"
+                  class="img-fluid form-img" src="../../../../assets/images/houzz.png">
+              </div>
+              <div class="mb-3">
+                <input type="text" formControlName="name" placeholder="Beer Name*" class="form-control"
+                  id="beerInputName">
+              </div>
+              <div class="mb-3">
+                <input type="text" formControlName="genre" placeholder="Genre*" class="form-control"
+                  id="beerInputGenre">
+              </div>
+              <div class="mb-3">
+                <input type="text" formControlName="description" placeholder="Description*" class="form-control"
+                  id="beerInputDescription">
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-primary" (click)="onSubmit()" data-bs-dismiss="modal"
+              [disabled]="!beerForm.valid">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
