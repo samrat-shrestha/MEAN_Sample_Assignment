@@ -1,5 +1,3 @@
-import { Ingredients } from "./Ingredients";
-
 export interface Beer {
     id: string;
     name: string;

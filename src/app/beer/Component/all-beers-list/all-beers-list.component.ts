@@ -26,8 +26,6 @@ export class AllBeersListComponent implements OnInit, OnDestroy {
 
   hoverText: string = "";
 
-  isHoverImage: boolean = true;
-
   constructor(private beerService: BeerService, private beerQuery: BeerQuery) {
   }
 
@@ -56,7 +54,6 @@ export class AllBeersListComponent implements OnInit, OnDestroy {
 
   imageMouseHover(ingredients: any, p :any, event:any) {
     this.hoverText = "ingredients : ";
-    this.isHoverImage = true;
     for (var key in ingredients) {
       this.hoverText += key + " ";
     }
@@ -66,7 +63,6 @@ export class AllBeersListComponent implements OnInit, OnDestroy {
 
   imageMouseLeave(event:any){
     event.target.parentElement.className='card w-100 own-card';
-    this.isHoverImage = false;
   }
 
   ngOnDestroy() {
