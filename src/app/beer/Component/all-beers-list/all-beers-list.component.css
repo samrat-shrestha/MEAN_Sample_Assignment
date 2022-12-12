@@ -10,6 +10,16 @@ img {
     margin: 0px 0px 15px 0px;
 }
 
+/* .card :not(img):hover {
+    background: rgb(225, 236, 252);
+    cursor: pointer;
+} */
+
+.own-card:hover {
+    background: rgb(225, 236, 252);
+    cursor: pointer;
+}
+
 .card-title {
     font-weight: bold;
 }

@@ -26,7 +26,7 @@ export class AllBeersListComponent implements OnInit, OnDestroy {
 
   hoverText: string = "";
 
-  isLoadMoreClicked: boolean = false;
+  isHoverImage: boolean = true;
 
   constructor(private beerService: BeerService, private beerQuery: BeerQuery) {
   }
@@ -54,12 +54,19 @@ export class AllBeersListComponent implements OnInit, OnDestroy {
     });
   }
 
-  mouseHover(ingredients: any) {
+  imageMouseHover(ingredients: any, p :any, event:any) {
     this.hoverText = "ingredients : ";
+    this.isHoverImage = true;
     for (var key in ingredients) {
       this.hoverText += key + " ";
     }
-    console.log(this.hoverText);
+    event.target.parentElement.className='card w-100';
+    p.open();
+  }
+
+  imageMouseLeave(event:any){
+    event.target.parentElement.className='card w-100 own-card';
+    this.isHoverImage = false;
   }
 
   ngOnDestroy() {

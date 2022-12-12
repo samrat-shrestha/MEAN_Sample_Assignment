@@ -1,7 +1,7 @@
 <div class="row" style="display: flex;">
   <div class="col-lg-6 mb-3 d-flex align-items-stretch" *ngFor="let beer of beers$ | async">
-    <div class="card w-100" >
-      <img placement="right" (mouseenter)="[mouseHover(beer.ingredients), p.open()]" (mouseleave)="p.close()" #p="ngbPopover" ngbPopover="{{hoverText}}" class="img-fluid" src="{{beer.image_url}}" nz-popover nzType="primary" nzPopoverTitle="Title" nzPopoverContent="Content">
+    <div class="card w-100 own-card">
+      <img placement="right" (mouseenter)="[imageMouseHover(beer.ingredients, p, $event)]" (mouseleave)="[imageMouseLeave($event), p.close()]" #p="ngbPopover" ngbPopover="{{hoverText}}" class="img-fluid" src="{{beer.image_url}}" nz-popover nzType="primary" nzPopoverTitle="Title" nzPopoverContent="Content">
       <div class="card-body">
         <h4 class="card-title">{{ beer.name }}</h4>
         <h6 class="card-title" style="color: darkgoldenrod;">{{ beer.tagline }}</h6>
